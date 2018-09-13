@@ -1,15 +1,11 @@
-import random
-import re
-import string
 import unicodedata
-
 import torch
-from torch.utils.data import Dataset
 
 SOS_token = 0
 EOS_token = 1
 MAX_LENGTH = 10
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class Lang(object):
     def __init__(self, name):
@@ -39,12 +35,10 @@ def unicodeToAscii(s):
     char_list = ''.join(chars)
     return char_list
 
-
 # Lowercase, trim, and remove non-letter characters
 def normalizeString(s):
     s = unicodeToAscii(s.lower().strip())
     return s
-
 
 def readLangs(lang1, lang2, reverse=False):
     #print("Reading lines...")
@@ -79,12 +73,8 @@ def filterPair(p):
     is_good_length = len(p[0].split(' ')) < MAX_LENGTH and len(p[1].split(' ')) < MAX_LENGTH
     return is_good_length
 
-
-def filtePairs(pairs):
-    return [pair for pair in pairs if filterPair(pair)]
 def filterPairs(pairs):
     return [pair for pair in pairs if filterPair(pair)]
-
 
 def prepareData(lang1, lang2, reverse=False):
     input_lang, output_lang, pairs = readLangs(lang1, lang2, reverse)
@@ -119,30 +109,10 @@ def indexesFromSentence(lang, sentence):
 def tensorFromSentence(lang, sentence):
     indexes = indexesFromSentence(lang, sentence)
     indexes.append(EOS_token)
-    result = torch.LongTensor(indexes)
-    return result
+    return torch.tensor(indexes, dtype=torch.long,device=device).view(-1, 1)
 
 
-def tensorFromPair(input_lang, output_lang, pair):
+def tensorsFromPair(input_lang, output_lang,pair):
     input_tensor = tensorFromSentence(input_lang, pair[0])
     target_tensor = tensorFromSentence(output_lang, pair[1])
-    return input_tensor, target_tensor
-
-
-class TextDataset(Dataset):
-    def __init__(self, dataload=prepareData, lang=['eng', 'ben']):
-        self.input_lang, self.output_lang, self.pairs = dataload(lang[0], lang[1], reverse=False)
-        self.input_lang_words = self.input_lang.n_words
-        self.output_lang_words = self.output_lang.n_words
-
-        # print(self.input_lang)
-        # print(self.output_lang)
-        #print(self.pairs)
-        #print(self.input_lang_words)
-        #print(self.output_lang_words)
-
-    def __getitem__(self, index):
-        return tensorFromPair(self.input_lang, self.output_lang,self.pairs[index])
-
-    def __len__(self):
-        return len(self.pairs)
+    return (input_tensor, target_tensor)
