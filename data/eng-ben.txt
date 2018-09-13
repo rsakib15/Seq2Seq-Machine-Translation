@@ -1,0 +1,13 @@
+How are you? Did you have a good trip?	কেমন আছো? যাত্রা ভালো ছিল তো?
+How many times do I have to apologize?	আমাকে কতবার ক্ষমা চাইতে হবে?
+I don't feel like eating anything now.	আমার এখন কিছুই খেতে ইচ্ছে করছে না।
+I don't understand what you're saying.	আপনি কি বলছেন আমি বুঝতে পারছি না।
+I don't understand what you're saying.	তুমি কি বলছো আমি বুঝতে পারছি না।
+I don't want to talk about it anymore.	আমি এই ব্যাপারে আর কোনো কথা বলতে চাই না।
+I know a store where you can buy that.	আমি একটা দোকান চিনি যেখান থেকে আপনি ওইটা কিনতে পারবেন।
+I know a store where you can buy that.	আমি একটা দোকান চিনি যেখান থেকে তুমি ওইটা কিনতে পারবে।
+I must have lost my key along the way.	আমি নিশ্চই আমার চাবিটা রাস্তায় হারিয়ে ফেলেছি।
+I once wanted to be an astrophysicist.	আমি একসময় জ্যোতির্বিজ্ঞানী হতে চেয়েছিলাম।
+I still haven't found my contact lens.	আমি এখনো আমার কন্ট্যাক্ট লেন্সটি পাইনি।
+I told them to send me another ticket.	আমি ওনাদের আর একটা টিকিট পাঠাতে বলেছি।
+Is there a nonstop flight to New York?	নিউ ইয়র্কের কোনো একটানা ফ্লাইট আছে?
